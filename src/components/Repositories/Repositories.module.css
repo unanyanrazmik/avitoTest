@@ -1,0 +1,37 @@
+import React from "react";
+import {compose} from "redux";
+import {connect} from "react-redux";
+import {setRepositoriesThunk} from "../../Redux/repos-reducer";
+
+
+class RepositoriesContainer extends React.Component {
+
+    componentDidMount() {
+        this.props.setRepositoriesThunk();
+        // this.props.setCommitThunk(this.props.items.map(u =>u.full_name))
+    }
+
+
+    render() {
+
+        return <div>
+            {this.props.items.map(u =>  <div key={u.id} className={s.repos}>
+                <div>{u.full_name}</div>
+                <img src = {u.owner.avatar_url}/>
+            </div>)
+            }
+        </div>
+    }
+}
+
+let mapStateToProps = (state) => {
+    return {
+        items: state.reposPage.items,
+        commit: state.reposPage.commit
+    }
+};
+
+
+export default compose(
+    connect(mapStateToProps, {setRepositoriesThunk})
+)(RepositoriesContainer)

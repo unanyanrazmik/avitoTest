@@ -1,0 +1,21 @@
+.description{
+    display: grid;
+    grid-gap: 10px;
+    margin: 0 auto;
+    width: 700px;
+}
+.description a{
+    color: #427a53;
+    font-size: 20px;
+}
+.description a:hover {
+    color: #6ab17c;
+
+}
+.name{
+    font-size: 30px;
+    color: #ff0067;
+}
+.city{
+    color: rgba(0, 0, 0, 0.51);
+}
