@@ -1,9 +1,10 @@
 import React from "react";
 import {compose} from "redux";
 import {connect} from "react-redux";
-import {setDescriptionThunk} from "../../../Redux/descriptionReducer";
 import {withRouter} from "react-router-dom";
 import Description from "./Description";
+import {setDescriptionThunk} from "../../Redux/description-reducer";
+import {getContributors, getRepos} from "../../Redux/reposSelector";
 
 
 class DescriptionContainer extends React.Component {
@@ -15,7 +16,7 @@ class DescriptionContainer extends React.Component {
     render() {
         return (
             <div>
-                <Description vacancy={this.props.vacancy}/>
+                <Description repos={this.props.repos} contributors={this.props.contributors}/>
             </div>
         )
     }
@@ -24,7 +25,8 @@ class DescriptionContainer extends React.Component {
 let mapStateToProps = (state) => {
 
     return {
-        vacancy: state.descriptionPage.vacancy
+        repos: getRepos(state),
+        contributors: getContributors(state)
     }
 };
 

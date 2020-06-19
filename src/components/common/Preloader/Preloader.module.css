@@ -1,5 +1,9 @@
-.prelosder{
-    display: block;
-    height: 150px;
+.preloader img {
     width: 150px;
+    height: 150px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: calc(50% - 75px);
 }

@@ -1,13 +1,9 @@
-import {createSelector} from "reselect";
+export const getItems = (state) => state.reposPage.items;
+export const getTotalCount = (state) => state.reposPage.totalCount;
+export const getSearchRespo = (state) => state.reposPage.searchRespo;
+export const getRepos = (state) =>  state.descriptionPage.repos;
+export const getPerPage = (state) => state.reposPage.perPage;
+export const getCurrentPage = (state) => state.reposPage.currentPage;
+export const IsFetching = (state) => state.reposPage.isFetching;
+export const getContributors = (state) => state.descriptionPage.contributors;
 
-
-export const getItems = (state) => state.vacanciesPage.items;
-export const getSearchVacancy = (state) => state.vacanciesPage.searchVacancy;
-export const getSort = (state) => state.vacanciesPage.sort;
-
-
-export const filterVacancies = createSelector(getItems, getSearchVacancy,(items, searchVacancy ) => {
-   return items.filter(v => {
-            return v.name.toLowerCase().includes(searchVacancy.toLowerCase())
-        });}
-);

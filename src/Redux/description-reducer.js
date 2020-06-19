@@ -1,18 +1,25 @@
-import {vacanciesAPI} from "../Api/Api";
+import {reposAPI} from "../Api/Api";
 
 
-const SET_DESCRIPTION_VACANCIES = 'setDescription/SET_DESCRIPTION_VACANCIES';
+const SET_DESCRIPTION_REPOS = 'setDescription/SET_DESCRIPTION_VACANCIES';
+const SET_CONTRIBUTORS = 'setContributors/SET_CONTRIBUTORS';
 
 let initialState = {
-    vacancy: null
+    repos: null,
+    contributors:null
 };
 
 const descriptionReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_DESCRIPTION_VACANCIES:
+        case SET_DESCRIPTION_REPOS:
             return {
                 ...state,
-                vacancy: action.vacancy,
+                repos: action.repos,
+            };
+        case SET_CONTRIBUTORS:
+            return {
+                ...state,
+                contributors: action.contributors,
             };
 
         default:
@@ -20,12 +27,15 @@ const descriptionReducer = (state = initialState, action) => {
     }
 };
 
-const setDescription = (vacancy) => ({type: SET_DESCRIPTION_VACANCIES, vacancy});
+const setDescription = (repos) => ({type: SET_DESCRIPTION_REPOS, repos});
+const setContributors = (contributors) => ({type: SET_CONTRIBUTORS, contributors});
 
 export const setDescriptionThunk = (id) => async (dispatch) => {
     try {
-        let response = await vacanciesAPI.getDescription(id);
+        let response = await reposAPI.getRepos(id);
+        let contributors =  await reposAPI.getContributors(response.data.full_name);
         dispatch(setDescription(response.data));
+        dispatch(setContributors(contributors.data));
     } catch (e) {
         throw e
     }

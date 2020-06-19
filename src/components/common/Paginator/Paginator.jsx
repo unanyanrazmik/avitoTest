@@ -3,42 +3,47 @@ import style from "./Paginator.module.css";
 import cn from 'classnames'
 
 
-const Paginator = ({totalUsersCount, pageSize, currentPage, onPageChanged, portionSize = 10}) => {
+const Paginator = React.memo(({totalCount, perPage, currentPage, onPageChanged, portionSize = 10}) => {
 
-    let pagesCount = Math.ceil(totalUsersCount / pageSize);
 
+    let pageCount = Math.ceil(totalCount / perPage);
     let pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i);
+    for (let i = 0 ; i <= pageCount; i++) {
+        pages.push(i)
     }
 
-    let portionCount = Math.ceil(pagesCount / portionSize);
+    let portionCount = Math.ceil(pageCount / portionSize);
     let [portionNumber, setPortionNumber] = useState(1);
     let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
     let rightPortionPageNumber = portionNumber * portionSize;
 
+    return (<div className={style.paginator}>
+            <div className={style.portion}>
+                {portionNumber > 1 &&
+                <button onClick={() => {
+                    setPortionNumber(portionNumber - 1)
+                }}>PREV</button>}
 
-    return <div className={style.paginator}>
-        {portionNumber > 1 &&
-        <button onClick={() => {
-            setPortionNumber(portionNumber - 1)
-        }}>PREV</button>}
-        {pages
-            .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
-            .map((p) => {
-                return <span className={ cn({
-                    [style.selectedPage]: currentPage === p
-                }, style.pageNumber)}
-                             key={p}
-                             onClick={(e) => {
-                                 onPageChanged(p);
-                             }}>{p}</span>
-            })}
-        {portionCount > portionNumber &&
-        <button onClick={() => {
-            setPortionNumber(portionNumber + 1)
-        }}>NEXT</button>}
+                {pages
+                    .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
+                    .map((p) => {
+                        return <span  className={cn({
+                            [style.selectedPage]: currentPage === p
+                        }, style.pageNumber)}
+                                     key={p}
+                                     onClick={(e) => {
+                                         onPageChanged(p);
+                                     }}>{p}</span>
+                    })}
+                {portionCount > portionNumber &&
+                <button onClick={() => {
+                    setPortionNumber(portionNumber + 1)
+                }}>NEXT</button>}
 
-    </div>
-};
+            </div>
+        </div>
+
+    );
+
+});
 export default Paginator;

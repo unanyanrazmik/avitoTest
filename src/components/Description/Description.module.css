@@ -1,21 +1,58 @@
-.description{
+.repos {
     display: grid;
-    grid-gap: 10px;
-    margin: 0 auto;
-    width: 700px;
+    grid-template-columns: 280px 600px;
+    width: 900px;
+    margin: 10px auto;
+    border:1px solid rgba(0, 0, 0, 0.16);
 }
-.description a{
-    color: #427a53;
-    font-size: 20px;
-}
-.description a:hover {
-    color: #6ab17c;
+
+.description {
+    padding: 20px;
 
 }
+
+span{
+    font-weight: bolder;
+
+}
+
+img {
+    width: 250px;
+    height: 250px;
+    margin: 20px;
+    border-radius: 10px;
+}
+
 .name{
-    font-size: 30px;
-    color: #ff0067;
+    display: grid;
+    grid-template-columns: 400px 100px;
+    position: relative;
 }
-.city{
-    color: rgba(0, 0, 0, 0.51);
+
+.stars{
+    position: absolute;
+    right: 0;
+
 }
+
+.stars img{
+    width: 15px;
+    height: 15px;
+    margin: 0;
+}
+
+.contributors {
+
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    width: 70px;
+    border-radius: 10px;
+    float: left;
+
+}
+.contributors img{
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    margin: 10px;
+}
+

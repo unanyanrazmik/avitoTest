@@ -1,37 +1,47 @@
-import React from "react";
-import {compose} from "redux";
-import {connect} from "react-redux";
-import {setRepositoriesThunk} from "../../Redux/repos-reducer";
+.repos {
+    display: grid;
+    grid-template-columns: 100px 600px;
+    width: 800px;
+    margin: 10px auto;
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    border-radius: 10px;
+    padding: 10px;
 
-
-class RepositoriesContainer extends React.Component {
-
-    componentDidMount() {
-        this.props.setRepositoriesThunk();
-        // this.props.setCommitThunk(this.props.items.map(u =>u.full_name))
-    }
-
-
-    render() {
-
-        return <div>
-            {this.props.items.map(u =>  <div key={u.id} className={s.repos}>
-                <div>{u.full_name}</div>
-                <img src = {u.owner.avatar_url}/>
-            </div>)
-            }
-        </div>
-    }
 }
 
-let mapStateToProps = (state) => {
-    return {
-        items: state.reposPage.items,
-        commit: state.reposPage.commit
-    }
-};
+.description{
+    display: grid;
+    grid-template-rows: 20px 20px;
+    width: 400px;
+    grid-gap: 5px;
+    margin: 20px 20px 20px 40px;
+}
 
+.repos a {
+    margin: 10px;
+    text-decoration-color:  rgb(34, 44, 67);
+}
 
-export default compose(
-    connect(mapStateToProps, {setRepositoriesThunk})
-)(RepositoriesContainer)
+.repos img{
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
+}
+.gitHub{
+    display: grid;
+    grid-template-columns: 500px 100px;
+    position: relative;
+}
+
+.stars{
+    position: absolute;
+    right: 0;
+
+}
+
+.stars img{
+    width: 15px;
+    height: 15px;
+    margin: 0;
+}
+

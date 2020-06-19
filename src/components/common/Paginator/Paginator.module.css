@@ -1,28 +1,32 @@
-
 .paginator{
-padding: 3px;
-    margin: 10px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(34, 44, 67);
+    width: 825px;
+    height: 48px;
+    border-radius: 5px;
+    margin: 20px 0 10px 0;
 }
-
-
-
-.pageNumber .selectedPage{
-    font-weight: bold ;
-    border-color: black;
-
+.portion{
+    position: absolute;
+    left: 220px;
+    top: 10px;
+    margin: 0 auto;
 }
-
-
-.paginator button  {
-    color: #3496a5;
-    margin-right: 5px;
+.pageNumber{
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+    margin: 4px;
+}
+.paginator button{
     border: none;
-    background-color: white;
+    color: white;;
+    background: none;
+    outline: none;
 }
-.paginator button:hover {
-    background-color: #eaeeff;
-}
-
-.paginator span {
-    padding: 3px;
+.selectedPage {
+   font-size: 17px;
+   color: hotpink;
 }
