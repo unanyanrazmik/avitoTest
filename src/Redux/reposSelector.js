@@ -6,4 +6,6 @@ export const getPerPage = (state) => state.reposPage.perPage;
 export const getCurrentPage = (state) => state.reposPage.currentPage;
 export const IsFetching = (state) => state.reposPage.isFetching;
 export const getContributors = (state) => state.descriptionPage.contributors;
+export const setNewST = (state) => state.reposPage.newSearchText;
+
 

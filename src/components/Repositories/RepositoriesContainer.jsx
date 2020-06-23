@@ -1,7 +1,7 @@
 import React from "react";
 import {compose} from "redux";
 import {connect} from "react-redux";
-import {setHandleInputThunk, setRepositoriesThunk} from "../../Redux/repos-reducer";
+import {setHandleInputThunk, setNewSearchText, setPageNumber, setRepositoriesThunk} from "../../Redux/repos-reducer";
 import Repositories from "./Repositories";
 import Search from "../common/Search/Search";
 import {
@@ -10,7 +10,7 @@ import {
     getPerPage,
     getSearchRespo,
     getTotalCount,
-    IsFetching
+    IsFetching, setNewST
 } from "../../Redux/reposSelector";
 
 
@@ -19,28 +19,51 @@ class RepositoriesContainer extends React.Component {
 
     componentDidMount() {
 
-        this.props.setRepositoriesThunk();
+        this.props.setRepositoriesThunk(this.props.currentPage);
+        this.props.setHandleInputThunk(this.props.newSearchText);
     }
 
     handleInput = (e) => {
-        this.props.setHandleInputThunk(e.target.value);
+        let value = e.target.value;
+        this.props.setNewSearchText(value)
+
+
     };
 
     onPageChanged = (p) => {
         this.props.setRepositoriesThunk(p);
+
     };
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if( this.props.currentPage !== prevProps.currentPage) {
+            this.props.setRepositoriesThunk(this.props.currentPage);
+        }
+
+       if( this.props.newSearchText !== prevProps.newSearchText) {
+            this.props.setHandleInputThunk(this.props.newSearchText)
+
+        }
+    }
+
+
+
     render() {
+
 
         return <div>
 
             <div>
-                <Search handleInput={this.handleInput}/>
+                <Search
+                    handleInput={this.handleInput}
+                    newSearchText={this.props.newSearchText}
+
+                />
             </div>
             <div>
                 <Repositories
+
                     items={this.props.items}
-                    commit={this.props.commit}
                     isFetching={this.props.isFetching}
                     onPageChanged={this.onPageChanged}
                     currentPage={this.props.currentPage}
@@ -59,11 +82,14 @@ let mapStateToProps = (state) => {
         searchRespo: getSearchRespo(state),
         totalCount: getTotalCount(state),
         perPage: getPerPage(state),
-        currentPage: getCurrentPage(state)
+        currentPage: getCurrentPage(state),
+        newSearchText: setNewST(state)
+
+
     }
 };
 
 
 export default compose(
-    connect(mapStateToProps, {setRepositoriesThunk, setHandleInputThunk})
+    connect(mapStateToProps, {setRepositoriesThunk, setHandleInputThunk, setPageNumber, setNewSearchText})
 )(RepositoriesContainer)

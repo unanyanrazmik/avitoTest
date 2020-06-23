@@ -3,8 +3,7 @@ import style from "./Paginator.module.css";
 import cn from 'classnames'
 
 
-const Paginator = React.memo(({totalCount, perPage, currentPage, onPageChanged, portionSize = 10}) => {
-
+const Paginator = React.memo(({totalCount, perPage, currentPage = 1, onPageChanged, portionSize = 10}) => {
 
     let pageCount = Math.ceil(totalCount / perPage);
     let pages = [];

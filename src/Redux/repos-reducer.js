@@ -5,6 +5,7 @@ const SET_REPOSITORIES = 'repositories/SET_VACANCIES';
 const TOGGLE_IS_FETHING = 'toggleIsFething/TOGGLE_IS_FETHING';
 const SET_CURRENT_PAGE = 'currentPage/SET_CURRENT_PAGE';
 const SET_TOTAL_COUNT = 'setTotalCount/SET_TOTAL_COUNT';
+const SET_NEW_SEARCH_TEXT = 'setSearchText/NEW_SEARCH_TEXT';
 
 let initialState = {
     items: [],
@@ -12,6 +13,7 @@ let initialState = {
     perPage: 10,
     currentPage: 1,
     isFetching: true,
+    newSearchText:''
 };
 
 const reposReducer = (state = initialState, action) => {
@@ -33,6 +35,11 @@ const reposReducer = (state = initialState, action) => {
                 ...state,
                 totalCount: action.totalCount,
             };
+        case SET_NEW_SEARCH_TEXT:
+            return {
+                ...state,
+                newSearchText: action.value,
+            };
 
         case  TOGGLE_IS_FETHING: {
             return {...state, isFetching: action.isFetching}
@@ -43,8 +50,9 @@ const reposReducer = (state = initialState, action) => {
 };
 
 export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETHING, isFetching});
+export const setPageNumber = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
+export  const setNewSearchText = (value) => ({type: SET_NEW_SEARCH_TEXT, value});
 const setRepositories = (items) => ({type: SET_REPOSITORIES, items});
-const setPageNumber = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
 const setTotalCount = (totalCount) => ({type: SET_TOTAL_COUNT, totalCount});
 
 export const setRepositoriesThunk = (currentPage) => async (dispatch) => {
@@ -62,8 +70,8 @@ export const setRepositoriesThunk = (currentPage) => async (dispatch) => {
 
 };
 
-export const setHandleInputThunk = (v) => async (dispatch) => {
-    if (!v) {
+export const setHandleInputThunk = (value) => async (dispatch) => {
+    if (!value) {
         try {
             let response = await reposAPI.getSortStars();
             dispatch(setRepositories(response.data.items));
@@ -73,9 +81,10 @@ export const setHandleInputThunk = (v) => async (dispatch) => {
     } else {
         try {
             dispatch(toggleIsFetching(true));
-            let response = await reposAPI.getSearch(v);
+            let response = await reposAPI.getSearch(value);
             dispatch(setRepositories(response.data.items));
             dispatch(toggleIsFetching(false));
+
         } catch (e) {
             throw e
         }
