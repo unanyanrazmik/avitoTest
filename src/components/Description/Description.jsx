@@ -11,15 +11,14 @@ const Description = React.memo(({repos, contributors}) => {
         return <Preloader/>
     }
 
-console.log(contributors)
     return <div className={style.repos}>
         <div>
-            <img src={repos.owner.avatar_url}/>
+            <img src={repos.owner.avatar_url}  alt='owner.avatar'/>
         </div>
         <div className={style.description}>
             <div className={style.name}>
                 <div><span>Repository: </span> <a href={repos.owner.html_url}>{repos.name}</a> </div>
-                <div className={style.stars}>{repos.stargazers_count}  < img src={star} /></div>
+                <div className={style.stars}>{repos.stargazers_count}  < img src={star} alt='star'/></div>
             </div>
             <div>
                 <span>Updated:  </span>{repos.updated_at.replace( /[T, Z]/gi,  ' ')}
@@ -43,7 +42,7 @@ console.log(contributors)
             <div>
                 {contributors.map(u => <div key={u.id} className={style.contributors}>
                     <div>
-                        <a href={u.html_url}><img src={u.avatar_url}/></a>
+                        <a href={u.html_url}><img src={u.avatar_url} alt='avatar'/></a>
                     </div>
                 </div>)}
             </div>

@@ -6,7 +6,7 @@ import style from "./Preloader.module.css";
 let Preloader = () => {
     return (
         <div className={style.preloader}>
-            <img src={loading}/>
+            <img src={loading} alt='loading'/>
         </div>
     )
 };
