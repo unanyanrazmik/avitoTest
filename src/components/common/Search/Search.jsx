@@ -8,7 +8,6 @@ const Search = React.memo(({handleInput, newSearchText}) => {
             <div className={style.search}>
                 <input
                     onChange={handleInput}
-                    value={newSearchText}
                     type="text"
                     placeholder="Search Repository"/>
             </div>

@@ -13,7 +13,7 @@ let initialState = {
     perPage: 10,
     currentPage: 1,
     isFetching: true,
-    newSearchText:''
+    newSearchText:undefined
 };
 
 const reposReducer = (state = initialState, action) => {
@@ -51,7 +51,7 @@ const reposReducer = (state = initialState, action) => {
 
 export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETHING, isFetching});
 export const setPageNumber = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
-export  const setNewSearchText = (value) => ({type: SET_NEW_SEARCH_TEXT, value});
+const setNewSearchText = (value) => ({type: SET_NEW_SEARCH_TEXT, value});
 const setRepositories = (items) => ({type: SET_REPOSITORIES, items});
 const setTotalCount = (totalCount) => ({type: SET_TOTAL_COUNT, totalCount});
 
@@ -82,6 +82,7 @@ export const setHandleInputThunk = (value) => async (dispatch) => {
         try {
             dispatch(toggleIsFetching(true));
             let response = await reposAPI.getSearch(value);
+            dispatch(setNewSearchText(value));
             dispatch(setRepositories(response.data.items));
             dispatch(toggleIsFetching(false));
 

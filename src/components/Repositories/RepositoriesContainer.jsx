@@ -1,7 +1,7 @@
 import React from "react";
 import {compose} from "redux";
 import {connect} from "react-redux";
-import {setHandleInputThunk, setNewSearchText, setPageNumber, setRepositoriesThunk} from "../../Redux/repos-reducer";
+import {setHandleInputThunk, setPageNumber, setRepositoriesThunk} from "../../Redux/repos-reducer";
 import Repositories from "./Repositories";
 import Search from "../common/Search/Search";
 import {
@@ -18,14 +18,12 @@ import {
 class RepositoriesContainer extends React.Component {
 
     componentDidMount() {
-
         this.props.setRepositoriesThunk(this.props.currentPage);
-        this.props.setHandleInputThunk(this.props.newSearchText);
     }
 
     handleInput = (e) => {
         let value = e.target.value;
-        this.props.setNewSearchText(value)
+        this.props.setHandleInputThunk(value);
 
 
     };
@@ -38,11 +36,6 @@ class RepositoriesContainer extends React.Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if( this.props.currentPage !== prevProps.currentPage) {
             this.props.setRepositoriesThunk(this.props.currentPage);
-        }
-
-       if( this.props.newSearchText !== prevProps.newSearchText) {
-            this.props.setHandleInputThunk(this.props.newSearchText)
-
         }
     }
 
@@ -91,5 +84,5 @@ let mapStateToProps = (state) => {
 
 
 export default compose(
-    connect(mapStateToProps, {setRepositoriesThunk, setHandleInputThunk, setPageNumber, setNewSearchText})
+    connect(mapStateToProps, {setRepositoriesThunk, setHandleInputThunk, setPageNumber})
 )(RepositoriesContainer)

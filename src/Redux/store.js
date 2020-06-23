@@ -11,7 +11,6 @@ let reducers = combineReducers({
     descriptionPage: descriptionReducer
 });
 
-
 const persistedState = loadState();
 
 const store = createStore(
