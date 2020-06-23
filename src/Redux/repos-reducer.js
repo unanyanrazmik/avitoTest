@@ -67,7 +67,6 @@ export const setRepositoriesThunk = (currentPage) => async (dispatch) => {
     }
     dispatch(toggleIsFetching(false));
 
-
 };
 
 export const setHandleInputThunk = (value) => async (dispatch) => {
