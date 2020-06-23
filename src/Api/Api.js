@@ -2,7 +2,7 @@ import * as axios from "axios";
 
 const instance = axios.create({
     baseURL: `https://api.github.com/`,
-    headers: {'Authorization': `Token 99d471891d8f775b3994211c89df8086ccb2251d`}
+    headers: {'Authorization': `Token  9db2a6e962f32f304fe2321237a2b2d86bcec62c`}
 });
 
 export const reposAPI = {
