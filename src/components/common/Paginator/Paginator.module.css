@@ -1,5 +1,5 @@
 .paginator{
-    position: absolute;
+    position: relative;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: rgb(34, 44, 67);

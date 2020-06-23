@@ -12,6 +12,7 @@ import {
     getTotalCount,
     IsFetching, setNewST
 } from "../../Redux/reposSelector";
+import Paginator from "../common/Paginator/Paginator";
 
 
 
@@ -37,6 +38,7 @@ class RepositoriesContainer extends React.Component {
         if( this.props.currentPage !== prevProps.currentPage) {
             this.props.setRepositoriesThunk(this.props.currentPage);
         }
+
     }
 
 
@@ -50,16 +52,19 @@ class RepositoriesContainer extends React.Component {
                 <Search
                     handleInput={this.handleInput}
                     newSearchText={this.props.newSearchText}
-
                 />
             </div>
             <div>
                 <Repositories
-
                     items={this.props.items}
                     isFetching={this.props.isFetching}
-                    onPageChanged={this.onPageChanged}
+                />
+
+            </div>
+            <div>
+                <Paginator
                     currentPage={this.props.currentPage}
+                    onPageChanged={this.onPageChanged}
                     perPage={this.props.perPage}
                     totalCount={this.props.totalCount}
                 />

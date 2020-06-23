@@ -2,11 +2,10 @@ import React from "react";
 import style from './Repositories.module.css';
 import {NavLink} from "react-router-dom";
 import Preloader from "../common/Preloader/Preloader";
-import Paginator from "../common/Paginator/Paginator";
 import star from "../../assets/img/star.png"
 
 
-const Repositories = React.memo(({items, isFetching, onPageChanged, currentPage, totalCount, perPage}) => {
+const Repositories = React.memo(({items, isFetching}) => {
 
     return <div>
         {isFetching
@@ -24,12 +23,7 @@ const Repositories = React.memo(({items, isFetching, onPageChanged, currentPage,
             </div>
         </div>)
         }
-        <Paginator
-            currentPage={currentPage}
-            onPageChanged={onPageChanged}
-            perPage={perPage}
-            totalCount={totalCount}
-        />
+
     </div>
 });
 

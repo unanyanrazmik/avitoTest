@@ -1,17 +1,17 @@
-.inputField {
-    margin: 0 auto;
-    width: 825px;
-}
 
 .search {
+    margin: 0 auto;
     width:825px;
     height: 100px;
     background-color: rgb(34, 44, 67);
     border-radius: 5px;
 }
 
-input {
-    margin: 30px 20px;
+.search input {
+    position: sticky;
+    top: 0;
+    float: right;
+    margin: 10px 20px 0 20px;
     height: 35px;
     width: 775px;
     border: 3px solid rgb(34, 44, 67);
